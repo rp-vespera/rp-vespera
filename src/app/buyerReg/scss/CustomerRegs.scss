@@ -1,0 +1,34 @@
+@import "primereact/resources/themes/lara-light-blue/theme.css";
+@import "primereact/resources/primereact.min.css";
+
+.bgPrimary {
+  background-color: #f7f3ed;
+}
+
+.bgSecondary {
+  background: linear-gradient(135deg, #b18343, #d9a066);
+}
+
+.bgAccent {
+  background-color: #0a352d !important;
+  transition: all 0.3s ease;
+}
+
+.bgAccent:hover {
+  background-color: #0f5d4f !important;
+  color: #ffffff !important;
+  transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+  .toasts {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: none; /* take almost full width */
+  }
+  .forms{
+    min-width: 100%;
+  }
+}
