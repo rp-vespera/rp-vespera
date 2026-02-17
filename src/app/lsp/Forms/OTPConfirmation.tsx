@@ -110,6 +110,7 @@ export default function OTPConfirmation({ nextPage }: Props) {
 
             <div className="flex flex-row gap-3 justify-center mt-4">
               <button
+                type="button"
                 className="btn-primary"
                 onClick={handleSendOtp}
                 disabled={loading}

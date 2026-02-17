@@ -49,7 +49,6 @@ export default function LSPayment({ nextPage }: Props) {
         const result = await PaymentService.getOwnerLots(
           String(bparId)
         );
-
         if (result.success) {
           setLots(result.data);
         }
@@ -59,11 +58,8 @@ export default function LSPayment({ nextPage }: Props) {
         setLoading(false);
       }
     };
-
     fetchLots();
   }, []);
-
-  // ---------------- AI RECEIPT READER ----------------
   const handleReadReceipt = async (file: File) => {
     try {
       setAiReading(true);
@@ -99,8 +95,6 @@ export default function LSPayment({ nextPage }: Props) {
       setAiReading(false);
     }
   };
-
-  // ---------------- IMAGE COMPRESSION ----------------
   const handleFileChange = async (file: File) => {
     try {
       const compressedFile = await imageCompression(file, {
