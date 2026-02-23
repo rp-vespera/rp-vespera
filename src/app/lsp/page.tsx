@@ -8,6 +8,7 @@ import LSPayment from "./Forms/LSPayment";
 import IntermentPayment from "./Forms/IntermentPayment";
 import PaymentSelection from "./Forms/paymentSelection";
 import CustomerInformation from "./Forms/CustomerInformation";
+import ConfirmationPage from "./Forms/Confirmation";
 
 export default function Form() {
   const toast = useRef<Toast>(null);
@@ -15,26 +16,26 @@ export default function Form() {
   const [paymentForm, setPaymentForm] = useState<string>("");
   
   useEffect(() => {
-    const stored = localStorage.getItem("CurrentForm");
+    const stored = sessionStorage.getItem("CurrentForm");
     if(stored){
       setCurrentForm(Number(stored));
     }else{
-      localStorage.setItem("CurrentForm", "0");
+      sessionStorage.setItem("CurrentForm", "0");
     }
   }, []);
 
   const changeForm = (step: number, payment?: string) => {
     if (payment) {
       setPaymentForm(payment);
-      localStorage.setItem("PaymentOption", payment);
+      sessionStorage.setItem("PaymentOption", payment);
     }
 
     setCurrentForm(step);
-    localStorage.setItem("CurrentForm", step.toString());
+    sessionStorage.setItem("CurrentForm", step.toString());
   };
   return (
     <div className="w-full flex flex-row justify-center">
-      <div className="w-3/5 p-10 bg-secondary rounded-2xl">
+      <div className="w-4/5 p-10 bg-secondary rounded-2xl">
         {currentForm === 0 && (
           <CustomerInformation nextPage={() => changeForm(1)} />
         )}
@@ -52,6 +53,9 @@ export default function Form() {
 
         {currentForm === 3 && paymentForm === "IP" && (
           <IntermentPayment nextPage={() => changeForm(4)} />
+        )}
+        {currentForm === 4 && (
+          <ConfirmationPage />
         )}
       </div>
 
